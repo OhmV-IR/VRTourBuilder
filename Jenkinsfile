@@ -1,4 +1,4 @@
-// Jenkinsfile template for Unity 2017.4.27f1 (no Build Profiles).
+// Jenkinsfile template for Unity 2017.4.40f1 (no Build Profiles).
 // Builds the scenes enabled in File > Build Settings for each TARGET with
 // Assets/Editor/CommandLineBuild.cs. See "Configuring a Legacy Unity Build Pipeline.docx".
 //
@@ -7,7 +7,7 @@
 //   for standalone targets in this version; the editor script switches to Mono if needed.
 // - BuildPipeline.BuildPlayer returns a string here, not a BuildReport. The editor
 //   script handles this; harmless errors logged under -nographics do not fail the build.
-// - Agent image modules (UNITY_INSTALLS): 2017.4.27f1:0c4b856e4c6e:windows,webgl
+// - Agent image modules (UNITY_INSTALLS): 2017.4.40f1:6e14067f8a9a:windows-mono,webgl
 def buildDir(String target, String buildType) {
   def projectPrefix = (env.PROJECT_DIR == '.') ? '' : "${env.PROJECT_DIR}/"
   return "${projectPrefix}Builds/${target}/${buildType}"
@@ -108,7 +108,7 @@ pipeline {
                       DEV_FLAG=""
                       if [ "$BUILD_TYPE" = "Development" ]; then DEV_FLAG="-devBuild"; fi
                       xvfb-run --auto-servernum --server-args='-screen 0 1024x768x24' dbus-launch \
-                      ~/Unity/Hub/Editor/2017.4.27f1/Editor/Unity \
+                      ~/Unity/Hub/Editor/2017.4.40f1/Editor/Unity \
                       -username "$UNITY_USER" \
                       -password "$UNITY_PASSWORD" \
                       -serial "$UNITY_LICENSE_SERIAL" \
